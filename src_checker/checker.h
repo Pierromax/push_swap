@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ple-guya <ple-guya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/26 16:15:59 by ple-guya          #+#    #+#             */
-/*   Updated: 2024/05/05 22:43:12 by ple-guya         ###   ########.fr       */
+/*   Created: 2024/05/03 17:10:42 by ple-guya          #+#    #+#             */
+/*   Updated: 2024/05/05 22:52:02 by ple-guya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#ifndef CHECKER_H
+# define CHECKER_H
 
 # include "../libft/libft.h"
 # include <limits.h>
@@ -59,26 +59,16 @@ t_stack	*ft_laststack(t_stack *lst);
 void	ft_stackadd_back(t_stack **lst, t_stack *new);
 void	ft_stackadd_front(t_stack **lst, t_stack *new);
 int		ft_stackindex(t_stack *lst);
-void	print_list(t_stack	*lst);
-void	print_pos(t_stack	*lst);
 void	free_stack(t_stack **src);
+void	print_list(t_stack *a);
 
 //parsing
-t_stack	*get_args(int ac, char **av, t_data *data);
+t_stack	*get_check_args(int ac, char **av);
 int		check_overflow(int n, char sign, int size);
 
-//utilitaires
-int		ft_min(int a, int b);
-int		ft_max(int a, int b);
-
-//get cost functions
-t_stack	*get_cheapest(t_stack **stack, t_data *a_data, t_data *b_data);
-
-//get_target
-void	set_target(t_stack **a, t_stack **b, int what);
-
-//rotating 
-void	rotating(t_stack **src, t_stack **target, t_stack *cheap, int which);
-void	last_rotate(t_stack	**a, t_data *a_data);
+//checker utils
+int		check_valid_operation(char *op);
+void	operate(char *op, t_stack **a, t_stack **b);
+int		issorted(t_stack **a);
 
 #endif

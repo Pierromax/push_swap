@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ple-guya <ple-guya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/28 22:17:31 by ple-guya          #+#    #+#             */
-/*   Updated: 2024/05/03 18:16:20 by ple-guya         ###   ########.fr       */
+/*   Created: 2024/02/28 22:17:12 by ple-guya          #+#    #+#             */
+/*   Updated: 2024/05/03 21:43:03 by ple-guya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int	main(int ac, char **av)
+static void	ft_push_stack(t_stack **src, t_stack **dest)
 {
-	t_stack	*a;
-	t_data	data;
+	t_stack	*tmp;
 
-	if (ac == 1)
-		return (0);
-	a = get_args(ac, av, &data);
-	if (!a)
-		return (write(2, "Error\n", 6));
-	sort_stack(&a, &data);
-	free_stack(&a);
-	return (0);
+	if (*src == NULL)
+		return ;
+	tmp = (*src)->next;
+	ft_stackadd_front(dest, *src);
+	*src = tmp;
+}
+
+void	pa(t_stack **a, t_stack **b)
+{
+	ft_push_stack(b, a);
+}
+
+void	pb(t_stack **a, t_stack **b)
+{
+	ft_push_stack(a, b);
 }

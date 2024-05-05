@@ -4,9 +4,10 @@ CC	= cc
 CFLAGS	= -Wall -Wextra -Werror -g
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
-FILES 			= 	sort	\
+FILES 			=	sort	\
 					main
-SRCS 			=  src/*.c
+SRCS 			= src/*.c
+SRC_CHECKER		= src_checker/*.c
 OBJS	= $(SRCS:.c=.o)
 RM  	= rm -rf
 
@@ -21,7 +22,7 @@ ERASE_ALL		= 	\033[0J
 # COLORS 
 YELLOW 			= 	\033[0;33m
 GREEN 			= 	\033[0;32m
-BLUE 			= 	\033[0;34m
+BLUE 			= 	\033[0;34m 
 RED				= 	\033[0;31m
 PURPLE 			= 	\033[0;35m
 CYAN 			= 	\033[0;36m
@@ -55,6 +56,11 @@ $(NAME):
 $(LIBFT):
 	@make --silent -C $(LIBFT_DIR)
 
+bonus :
+	@${CC} ${CFLAGS} ${SRC_CHECKER} $(LIBFT) -o checker -g3
+	@echo "$(CYAN) checker ok"
+
+
 clean :
 	@$(RM) $(OBJS)
 	@make clean --silent -C $(LIBFT_DIR)
@@ -74,4 +80,4 @@ fclean : clean
 
 re : fclean all
 
-.PHONY	: all clean fclean re
+.PHONY	: all clean bonus fclean re
