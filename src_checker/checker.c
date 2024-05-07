@@ -6,7 +6,7 @@
 /*   By: ple-guya <ple-guya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:29:58 by ple-guya          #+#    #+#             */
-/*   Updated: 2024/05/05 23:00:41 by ple-guya         ###   ########.fr       */
+/*   Updated: 2024/05/07 19:21:49 by ple-guya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,15 +83,25 @@ void	operate(char *op, t_stack **a, t_stack **b)
 		rrb(b);
 }
 
-int	check_overflow(int n, char sign, int size)
+int	check_overflow(int n, char *arg)
 {
 	int	signal;
+	int	i;
 
+	i = 0;
 	signal = 1;
-	if (size > 11)
+	if (*arg == '-' || *arg == '+')
+	{
+		if (*arg == '-')
+			signal = -1;
+		arg++;
+	}
+	while (*arg == '0')
+		arg++;
+	if (ft_strlen(arg) > 11)
 		return (0);
-	if (sign == '-')
-		signal = -1;
+	if (n == -2147483648)
+		return (1);
 	if (n * signal < 0)
 		return (0);
 	return (1);

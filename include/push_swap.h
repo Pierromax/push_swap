@@ -6,7 +6,7 @@
 /*   By: ple-guya <ple-guya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 16:15:59 by ple-guya          #+#    #+#             */
-/*   Updated: 2024/05/05 22:43:12 by ple-guya         ###   ########.fr       */
+/*   Updated: 2024/05/07 17:51:56 by ple-guya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	free_stack(t_stack **src);
 
 //parsing
 t_stack	*get_args(int ac, char **av, t_data *data);
-int		check_overflow(int n, char sign, int size);
+int		check_overflow(int n, char *arg);
 
 //utilitaires
 int		ft_min(int a, int b);

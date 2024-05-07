@@ -6,7 +6,7 @@
 /*   By: ple-guya <ple-guya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 22:17:09 by ple-guya          #+#    #+#             */
-/*   Updated: 2024/05/03 16:11:11 by ple-guya         ###   ########.fr       */
+/*   Updated: 2024/05/07 19:02:34 by ple-guya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static int	check_char(char *arg)
 static int	*checks_ints(char **arg, int size)
 {
 	int	*value;
-	int	argsize;
 	int	i;
 	int	j;
 	int	sign;
@@ -50,9 +49,8 @@ static int	*checks_ints(char **arg, int size)
 		j = 0;
 		if (!check_char(arg[i]))
 			return (free(value), NULL);
-		argsize = ft_strlen(arg[i]);
 		value[i] = ft_atoi(arg[i]);
-		if (!check_overflow(value[i], arg[i][0], argsize))
+		if (!check_overflow(value[i], arg[i]))
 			return (free(value), NULL);
 		i++;
 	}

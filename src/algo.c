@@ -6,7 +6,7 @@
 /*   By: ple-guya <ple-guya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 17:28:47 by ple-guya          #+#    #+#             */
-/*   Updated: 2024/05/03 21:40:47 by ple-guya         ###   ########.fr       */
+/*   Updated: 2024/05/07 18:46:46 by ple-guya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,11 @@ void	turkish(t_stack **a, t_stack **b, t_data *a_data)
 	t_data	b_data;
 	t_stack	*cheapest;
 
-	pb(a, b);
-	pb(a, b);
+	b_data.size = 0;
 	while (a_data->size > 3)
 	{
+		while (a_data->size-- > 3 && b_data.size++ < 2)
+			pb(a, b);
 		init_data(a, b, a_data, &b_data);
 		set_target(a, b, 'a');
 		cheapest = get_cheapest(a, a_data, &b_data);

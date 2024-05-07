@@ -6,7 +6,7 @@
 /*   By: ple-guya <ple-guya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 22:17:09 by ple-guya          #+#    #+#             */
-/*   Updated: 2024/05/05 22:42:11 by ple-guya         ###   ########.fr       */
+/*   Updated: 2024/05/07 19:22:13 by ple-guya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	*checks_ints(char **arg, int size)
 			return (free(value), NULL);
 		argsize = ft_strlen(arg[i]);
 		value[i] = ft_atoi(arg[i]);
-		if (!check_overflow(value[i], arg[i][0], argsize))
+		if (!check_overflow(value[i], arg[i]))
 			return (free(value), NULL);
 		i++;
 	}

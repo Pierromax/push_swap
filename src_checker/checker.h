@@ -6,7 +6,7 @@
 /*   By: ple-guya <ple-guya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:10:42 by ple-guya          #+#    #+#             */
-/*   Updated: 2024/05/05 22:52:02 by ple-guya         ###   ########.fr       */
+/*   Updated: 2024/05/07 18:03:06 by ple-guya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	print_list(t_stack *a);
 
 //parsing
 t_stack	*get_check_args(int ac, char **av);
-int		check_overflow(int n, char sign, int size);
+int		check_overflow(int n, char *arg);
 
 //checker utils
 int		check_valid_operation(char *op);
