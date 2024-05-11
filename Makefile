@@ -1,15 +1,35 @@
-NAME	= push_swap
-
-CC	= cc
-CFLAGS	= -Wall -Wextra -Werror -g
-LIBFT_DIR = libft
+NAME		= push_swap
+BONUS_NAME	= checker
+CC			= cc
+CFLAGS		= -Wall -Wextra -Werror -g3
+LIBFT_DIR	= libft
 LIBFT = $(LIBFT_DIR)/libft.a
-FILES 			=	sort	\
-					main
-SRCS 			= src/*.c
-SRC_CHECKER		= src_checker/*.c
-OBJS	= $(SRCS:.c=.o)
-RM  	= rm -rf
+SRC_FILES			=	algo.c \
+					main.c \
+					cost.c \
+					parsing.c \
+					push.c \
+					r_rotate.c \
+					rotate.c \
+					rotating_stack.c \
+					small_sort.c \
+					swap.c \
+					target.c \
+					utils_chained.c \
+					utils.c
+CHECKER_FILES		= checker.c \
+					main.c \
+					parsing.c \
+					push.c \
+					r_rotate.c \
+					rotate.c \
+					swap.c \
+					utils_chained.c
+SRCS			= $(addprefix src/, $(SRC_FILES))
+SRC_CHECKER		= $(addprefix src_checker/, $(CHECKER_FILES))
+OBJS			= $(SRCS:.c=.o)
+OBJS_CHECKER	= $(SRC_CHECKER:.c=.o)
+RM				= rm -rf
 
 # CURSOR MOVEMENTS
 MOV_U			= 	\033[1A
@@ -19,7 +39,7 @@ MOV_B			= 	\033[1D
 
 ERASE_ALL		= 	\033[0J
 
-# COLORS 
+# COLORS
 YELLOW 			= 	\033[0;33m
 GREEN 			= 	\033[0;32m
 BLUE 			= 	\033[0;34m 
@@ -29,9 +49,9 @@ CYAN 			= 	\033[0;36m
 BLACK 			= 	\033[0;30
 WHITE 			= 	\033[0;37m
 
-all : $(LIBFT) $(NAME)
+all : $(LIBFT) $(NAME) 
 
-$(NAME):
+$(NAME): $(OBJS)
 	@echo "$(RED)          )     *     (    (    (     (        )            " ;
 	@echo "   (   ( /(   (      )\ ) )\ ) )\ )  )\ )  ( /(  (                " ;
 	@echo "  )\  )\())  )\))(  (()/((()/((()/( (()/(  )\()) )\ )             " ; 
@@ -40,7 +60,7 @@ $(NAME):
 	@echo "((/ __|/ _ \ |  \/  || _ \|_ _|| |   |_ _| | \| |(_)) __|          " ;
 	@echo " | (__| (_) || |\/| ||  _/ | | | |__  | |  |    |  | (_ | _  _  _  " ;
 	@echo "  \___|\___/ |_|  |_||_|  |___||____||___| |_|\_|   \___|(_)(_)(_) " ;
-	@${CC} ${CFLAGS} ${SRCS} $(LIBFT) -o $(NAME) -g3
+	@${CC} ${CFLAGS} ${OBJS} $(LIBFT) -o $(NAME) -g3
 	@sleep 0.1
 	@echo "$(CYAN)$(MOV_U)$(MOV_U)$(MOV_U)$(MOV_U)$(MOV_U)$(MOV_U)$(MOV_U)$(MOV_U)$(MOV_U)"
 	@echo "        )     *     (    (    (         (             (        )   "
@@ -53,16 +73,22 @@ $(NAME):
 	@echo "  \___|\___/ |_|  |_||_|  |___||____||___||___/   |___/|_|_\ \___/  "
 	@echo ""
 
-$(LIBFT):
+src/%.o : src/%.c
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(LIBFT): $(OBJS)
 	@make --silent -C $(LIBFT_DIR)
 
-bonus :
-	@${CC} ${CFLAGS} ${SRC_CHECKER} $(LIBFT) -o checker -g3
+bonus :  $(LIBFT) $(OBJS_CHECKER)
+	@${CC} ${CFLAGS} ${OBJS_CHECKER} $(LIBFT) -o checker -g3
 	@echo "$(CYAN) checker ok"
 
+src_checker/%.o : src_checker/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean :
 	@$(RM) $(OBJS)
+	@$(RM) $(OBJS_CHECKER)
 	@make clean --silent -C $(LIBFT_DIR)
 	@echo "$(CYAN)       (                  )        (       )   "
 	@echo "   (   )\ )      (     ( /(     (  )\ ) ( /(   "
@@ -76,8 +102,9 @@ clean :
 
 fclean : clean
 	@$(RM) $(NAME)
+	@$(RM) $(BONUS_NAME)
 	@make fclean --no-print-directory -C $(LIBFT_DIR)
 
 re : fclean all
 
-.PHONY	: all clean bonus fclean re
+.PHONY	: all clean fclean re

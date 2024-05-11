@@ -6,7 +6,7 @@
 /*   By: ple-guya <ple-guya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 22:17:09 by ple-guya          #+#    #+#             */
-/*   Updated: 2024/05/07 19:22:13 by ple-guya         ###   ########.fr       */
+/*   Updated: 2024/05/11 21:47:40 by ple-guya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ static int	*checks_ints(char **arg, int size)
 	sign = 0;
 	i = 0;
 	value = malloc(sizeof(int) * size + 1);
+	if (!value)
+		return(NULL);
 	while (arg[i])
 	{
 		j = 0;

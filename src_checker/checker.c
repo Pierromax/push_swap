@@ -6,7 +6,7 @@
 /*   By: ple-guya <ple-guya@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:29:58 by ple-guya          #+#    #+#             */
-/*   Updated: 2024/05/07 19:21:49 by ple-guya         ###   ########.fr       */
+/*   Updated: 2024/05/11 21:49:46 by ple-guya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int	check_overflow(int n, char *arg)
 {
 	int	signal;
 	int	i;
+	int	argsize;
 
 	i = 0;
 	signal = 1;
@@ -98,11 +99,12 @@ int	check_overflow(int n, char *arg)
 	}
 	while (*arg == '0')
 		arg++;
-	if (ft_strlen(arg) > 11)
+	argsize = ft_strlen(arg);
+	if (argsize > 11)
 		return (0);
-	if (n == -2147483648)
+	if (n == -2147483648 && signal == -1)
 		return (1);
-	if (n * signal < 0)
-		return (0);
+	if (n == 0 && argsize > 3)
+		return(0);
 	return (1);
 }
